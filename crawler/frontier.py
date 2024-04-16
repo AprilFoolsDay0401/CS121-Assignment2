@@ -40,6 +40,8 @@ class Frontier(object):
         total_count = len(self.save)
         tbd_count = 0
         for url, completed in self.save.values():
+            print(not completed)
+            print(is_valid(url))
             if not completed and is_valid(url):
                 self.to_be_downloaded.append(url)
                 tbd_count += 1

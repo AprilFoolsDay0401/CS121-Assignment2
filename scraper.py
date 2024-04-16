@@ -2,6 +2,7 @@ import re
 from urllib.parse import urlparse
 
 def scraper(url, resp):
+    print('here 4')
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
@@ -17,15 +18,21 @@ def extract_next_links(url, resp):
     #         resp.raw_response.content: the content of the page!
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
     if resp.status == 200:
-        print(process_resp(resp.raw_response.content))
-        return []
+        print('here')
+        try:
+            print(process_resp(f'printing {resp.raw_response.content}'))
+        except:
+            pass
+        return ['https://www.ics.uci.edu']
     else:
-        return []
+        print('here 2')
+        return ['https://www.ics.uci.edu']
 
 def process_resp(resp):
     pass
 
 def is_valid(url):
+    print('here 5')
     # Decide whether to crawl this url or not. 
     # If you decide to crawl it, return True; otherwise return False.
     # There are already some conditions that return False.
@@ -46,6 +53,3 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
-
-if "__name__" == "__main__":
-    print("Hello World!")
